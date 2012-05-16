@@ -42,7 +42,6 @@ module Bio
 
 
     def test_hmmsearch_domtblout_empty
-      p `pwd`
       filename = Testreport.hmmsearch_domtblout_empty
 
       assert_instance_of(Bio::Hmmer3Report,
