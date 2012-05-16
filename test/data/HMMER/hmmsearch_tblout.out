@@ -1,0 +1,4 @@
+#                                                               --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name        accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+wnt                  PF00110.12 sp|P56705|WNT4_HUMAN -           9.7e-130  418.5  23.4  1.1e-129  418.3  16.2   1.0   1   2   3   4   5   6   7 wnt family

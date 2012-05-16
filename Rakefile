@@ -17,10 +17,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bio-hmmer3_report"
   gem.homepage = "http://github.com/wwood/bioruby-hmmer3_report"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Enables parsing of HMMER version 3 reports}
+  gem.description = %Q{Enables parsing of HMMER version 3 reports}
   gem.email = "gmail.com after donttrustben"
-  gem.authors = ["Ben J Woodcroft"]
+  gem.authors = ["Christian Zmasek","Ben J Woodcroft"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

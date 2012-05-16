@@ -1,0 +1,9 @@
+#                                                                              --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name        accession   tlen query name             accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#------------------- ---------- -----   -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+#comment             PF08016.5    426 jgi|Nemve1|7|gw.28.1.1 -           1604   5.9e-19   67.4  70.5   1   8   0.00053       1.1    7.3   0.4   220   264   142   191   134   200 0.73 Polycystin cation channel
+Ion_trans            PF00520.24   201 jgi|Nemve1|7|gw.28.1.1 -           1604  6.3e-169  557.4  95.3   1   4   1.5e-41     3e-38  130.8  11.1     3   171   140   307   139   346 0.81 Ion transport protein
+Ion_trans            PF00520.24   201 jgi|Nemve1|7|gw.28.1.1 -           1604  6.3e-169  557.4  95.3   2   4   9.1e-45   1.8e-41  141.3  13.1     4   200   479   664   476   665 0.97 Ion transport protein
+Ion_trans            PF00520.24   201 jgi|Nemve1|7|gw.28.1.1 -           1604  6.3e-169  557.4  95.3   3   4   5.2e-45     1e-41  142.1  14.0     1   201   900  1117   900  1117 0.96 Ion transport protein
+Ion_trans            PF00520.24   201 jgi|Nemve1|7|gw.28.1.1 -           1604  6.3e-169  557.4  95.3   4   4   9.2e-51   1.8e-47  160.9  11.3     1   201  1217  1423  1217  1423 0.97 Ion transport protein
+PKD_channel          PF08016.5    426 jgi|Nemve1|7|gw.28.1.1 -           1604   5.9e-19   67.4  70.5   1   8   0.00053       1.1    7.3   0.4   220   264   142   191   134   200 0.73 Polycystin cation channel
