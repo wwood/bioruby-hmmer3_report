@@ -9,19 +9,12 @@
 #
 #
 # loading helper routine for testing bioruby
-require 'pathname'
-load Pathname.new(File.join(File.dirname(__FILE__), ['..'] * 4,
-    'bioruby_test_helper.rb')).cleanpath.to_s
-
-# libraries needed for the tests
-require 'test/unit'
-require 'bio/appl/hmmer/hmmer3report'
-
+require 'helper'
 
 module Bio
   module Testreport
 
-    HMMER_TEST_DATA = Pathname.new(BioRubyTestDataPath, 'HMMER').cleanpath.to_s
+    HMMER_TEST_DATA = Pathname.new(File.join('test','data','HMMER')).cleanpath.to_s
 
     def self.hmmsearch_domtblout_empty
       File.join HMMER_TEST_DATA, 'hmmsearch_domtblout_empty.out'
@@ -49,6 +42,7 @@ module Bio
 
 
     def test_hmmsearch_domtblout_empty
+      p `pwd`
       filename = Testreport.hmmsearch_domtblout_empty
 
       assert_instance_of(Bio::Hmmer3Report,
