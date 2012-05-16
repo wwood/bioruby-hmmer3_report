@@ -52,7 +52,8 @@ RDF/XML output:
 
     puts report.to_rdf
 
-== References
+## References
+
 * HMMER  http://hmmer.janelia.org/
 
 Note: this software is under active development!
