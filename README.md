@@ -5,9 +5,28 @@
 Parser class for hmmsearch and hmmscan in the HMMER 3 package.
 
 ## Examples
-Input from file:
 
-    report = Bio::Hmmer3Report.new('/path/to/hmmer_domtblout.output')
+# Description
+
+
+    # Input from string:
+    data = String.new
+    data         << '#                                                                            --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord'
+    data << "\n" << '# target name        accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target'
+    data << "\n" << '#------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------'
+    data << "\n" << 'Bcl-2                PF00452.13   101 sp|P10415|BCL2_HUMAN -            239   3.7e-30  103.7   0.1   1   1   7.9e-34   4.9e-30  103.3   0.0     1   101    97   195    97   195 0.99 Apoptosis regulator proteins, Bcl-2 family'
+    data << "\n" << 'BH4                  PF02180.11    27 sp|P10415|BCL2_HUMAN -            239   3.9e-15   54.6   0.1   1   1   1.3e-18   8.2e-15   53.6   0.1     2    26     8    32     7    33 0.94 Bcl-2 homology region 4'
+    data << "\n"
+
+    report = Bio::HMMER::HMMER3::Report.new(data)
+    report.hits.each do |hit|
+      puts hit.target_name
+      puts hit.full_sequence_e_value
+    end
+
+
+    # Input from file:
+    report = Bio::HMMER::HMMER3::Report.new(File.open('test/data/HMMER/hmmsearch_domtblout.out'))
     report.hits.each do |hit|
       puts hit.target_name
       puts hit.target_accession
@@ -32,21 +51,6 @@ Input from file:
       puts hit.target_description
     end
 
-Input from string:
-
-    data = String.new
-    data         << '                                                                           --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord'
-    data << "\n" << 'target name        accession   tlen query name           accession   qlen   E-value  score  bias    of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target'
-    data << "\n" << '#------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------'
-    data << "\n" << 'Bcl-2                PF00452.13   101 sp|P10415|BCL2_HUMAN -            239   3.7e-30  103.7   0.1   1   1   7.9e-34   4.9e-30  103.3   0.0     1   101    97   195    97   195 0.99 Apoptosis regulator proteins, Bcl-2 family'
-    data << "\n" << 'BH4                  PF02180.11    27 sp|P10415|BCL2_HUMAN -            239   3.9e-15   54.6   0.1   1   1   1.3e-18   8.2e-15   53.6   0.1     2    26     8    32     7    33 0.94 Bcl-2 homology region 4'
-    data << "\n"
-    
-    report = Bio::Hmmer3Report.new(data)
-    report.hits.each do |hit|
-      puts hit.target_name
-      puts hit.full_sequence_e_value
-    end
 
 ## References
 

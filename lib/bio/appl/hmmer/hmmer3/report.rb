@@ -2,7 +2,7 @@
 # = bio/appl/hmmer/hmmer3/report.rb - hmmscan/hmmsearch parser
 #
 # Copyright::   Copyright (C) 2011
-#               Christian Zmasek <cmzmasek@yahoo.com>
+#               Christian Zmasek <cmzmasek@yahoo.com>, Ben Woodcroft <https://github.com/wwood>
 # License::     The Ruby License
 #
 # $Id:$
@@ -14,59 +14,7 @@ module Bio
   class HMMER
     # == Description
     #
-    # Parser class for hmmsearch and hmmscan in the HMMER 3 package.
-    #
-    # == Examples
-    #
-    #    # Input from file:
-    #    report = Bio::HMMER::HMMER3::Report.new('/path/to/hmmer_domtblout.output')
-    #    report.hits.each do |hit|
-    #      puts hit.target_name
-    #      puts hit.target_accession
-    #      puts hit.query_name
-    #      puts hit.query_accession
-    #      puts hit.query_length
-    #      puts hit.full_sequence_e_value
-    #      puts hit.full_sequence_score
-    #      puts hit.domain_number
-    #      puts hit.domain_sum
-    #      puts hit.domain_c_e_value
-    #      puts hit.domain_i_e_value
-    #      puts hit.domain_score
-    #      puts hit.domain_bias
-    #      puts hit.hmm_coord_from
-    #      puts hit.hmm_coord_to
-    #      puts hit.ali_coord_from
-    #      puts hit.ali_coord_to
-    #      puts hit.env_coord_from
-    #      puts hit.env_coord_to
-    #      puts hit.acc
-    #      puts hit.target_description
-    #    end
-    #
-    #
-    #
-    #    # Input from string:
-    #    data = String.new
-    #    data         << '#                                                                            --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord'
-    #    data << "\n" << '# target name        accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target'
-    #    data << "\n" << '#------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------'
-    #    data << "\n" << 'Bcl-2                PF00452.13   101 sp|P10415|BCL2_HUMAN -            239   3.7e-30  103.7   0.1   1   1   7.9e-34   4.9e-30  103.3   0.0     1   101    97   195    97   195 0.99 Apoptosis regulator proteins, Bcl-2 family'
-    #    data << "\n" << 'BH4                  PF02180.11    27 sp|P10415|BCL2_HUMAN -            239   3.9e-15   54.6   0.1   1   1   1.3e-18   8.2e-15   53.6   0.1     2    26     8    32     7    33 0.94 Bcl-2 homology region 4'
-    #    data << "\n"
-    #
-    #    report = Bio::HMMER::HMMER3::Report.new(data)
-    #    report.hits.each do |hit|
-    #      puts hit.target_name
-    #      puts hit.full_sequence_e_value
-    #    end
-    #
-    #
-    #
-    # == References
-    #
-    # * HMMER
-    #   http://hmmer.janelia.org/
+    # Parser class for hmmsearch and hmmscan in the HMMER 3 package. See README of this biogem for more information.
     class HMMER3
       class Report
         def initialize(hmmer_output, format = nil)
@@ -74,12 +22,13 @@ module Bio
           @hits = Array.new
           @line_number = 0
           @format = format
-          if File.exists?(hmmer_output.to_s)
-            my_hmmer_output_file = File.new(hmmer_output.to_s)
-            my_hmmer_output_file.each_line() { |line| parse_line(line) }
-          else
+          if hmmer_output.kind_of?(String)
             str = StringIO.new(hmmer_output)
             str.each_line() { |line| parse_line(line) }
+          elsif hmmer_output.kind_of?(IO)
+            hmmer_output.each_line() { |line| parse_line(line) }
+          else
+            raise "Unexpected hmmer_output class: excpected String or IO, found #{hmmer_output.class}"
           end
         end
     
