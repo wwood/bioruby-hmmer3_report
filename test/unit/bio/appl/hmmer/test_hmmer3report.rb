@@ -7,8 +7,6 @@
 #
 #  $Id:$
 #
-#
-# loading helper routine for testing bioruby
 require 'helper'
 
 module Bio
@@ -44,8 +42,8 @@ module Bio
     def test_hmmsearch_domtblout_empty
       filename = Testreport.hmmsearch_domtblout_empty
 
-      assert_instance_of(Bio::Hmmer3Report,
-        report = Bio::Hmmer3Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::Report,
+        report = Bio::HMMER::HMMER3::Report.new(filename))
 
       assert_instance_of(Array,
         report.hits)
@@ -57,16 +55,16 @@ module Bio
     def test_hmmsearch_domtblout
       filename = Testreport.hmmsearch_domtblout
 
-      assert_instance_of(Bio::Hmmer3Report,
-        report = Bio::Hmmer3Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::Report,
+        report = Bio::HMMER::HMMER3::Report.new(filename))
 
       assert_instance_of(Array,
         report.hits)
 
-      assert_instance_of(Bio::HmmerPerDomainHit,
+      assert_instance_of(Bio::HMMER::HMMER3::PerDomainHit,
         report.hits[0])
 
-      assert_kind_of(Bio::Hmmer3Hit,
+      assert_kind_of(Bio::HMMER::HMMER3::Hit,
         report.hits[0])
 
       assert_equal(2,report.hits.length)
@@ -104,16 +102,16 @@ module Bio
 
       filename = Testreport.hmmsearch_tblout
 
-      assert_instance_of(Bio::Hmmer3Report,
-        report = Bio::Hmmer3Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::Report,
+        report = Bio::HMMER::HMMER3::Report.new(filename))
 
       assert_instance_of(Array,
         report.hits)
 
-      assert_instance_of(Bio::HmmerPerSequenceHit,
+      assert_instance_of(Bio::HMMER::HMMER3::PerSequenceHit,
         report.hits[0])
 
-      assert_kind_of(Bio::Hmmer3Hit,
+      assert_kind_of(Bio::HMMER::HMMER3::Hit,
         report.hits[0])
 
       assert_equal(1,report.hits.length)
@@ -143,16 +141,16 @@ module Bio
 
       filename = Testreport.hmmscan_domtblout
 
-      assert_instance_of(Bio::Hmmer3Report,
-        report = Bio::Hmmer3Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::Report,
+        report = Bio::HMMER::HMMER3::Report.new(filename))
 
       assert_instance_of(Array,
         report.hits)
 
-      assert_instance_of(Bio::HmmerPerDomainHit,
+      assert_instance_of(Bio::HMMER::HMMER3::PerDomainHit,
         report.hits[0])
 
-      assert_kind_of(Bio::Hmmer3Hit,
+      assert_kind_of(Bio::HMMER::HMMER3::Hit,
         report.hits[0])
 
       assert_equal(5,report.hits.length)
@@ -184,16 +182,16 @@ module Bio
     def test_hmmscan_tblout
       filename = Testreport.hmmscan_tblout
 
-      assert_instance_of(Bio::Hmmer3Report,
-        report = Bio::Hmmer3Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::Report,
+        report = Bio::HMMER::HMMER3::Report.new(filename))
 
       assert_instance_of(Array,
         report.hits)
 
-      assert_instance_of(Bio::HmmerPerSequenceHit,
+      assert_instance_of(Bio::HMMER::HMMER3::PerSequenceHit,
         report.hits[0])
 
-      assert_kind_of(Bio::Hmmer3Hit,
+      assert_kind_of(Bio::HMMER::HMMER3::Hit,
         report.hits[0])
 
       assert_equal(1,report.hits.length)
