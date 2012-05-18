@@ -58,11 +58,6 @@
 #
 #
 #
-#    # RDF/XML output:
-#    puts report.to_rdf
-#
-#
-#
 # == References
 #
 # * HMMER
@@ -89,16 +84,6 @@ module Bio
 
     attr_reader :hits
     attr_reader :format
-
-    def to_rdf(type = :xml)
-      output = String.new
-      output << rdf_header(type)
-      hits.each do |hit|
-        output << hit.to_rdf(type)
-      end
-      output << rdf_end(type)
-      output
-    end
 
     private
 
@@ -130,19 +115,6 @@ module Bio
       line =~ /^(\S*)\s+(\S+)\s+(\d+)\s+(\S+)\s+(\S+)\s+(\d+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\d+)\s+(\d+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\S+)\s*(.*)/
     end
 
-    #RDF output
-    def rdf_header(type = :xml)
-      '<?xml version="1.0"?>' +
-        "\n" + '<rdf:RDF' +
-        "\n" + ' xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"' +
-        "\n" + ' xmlns:' + Hmmer3Hit::RDF_HMMER_HIT+'="http://www.open-bio.org/core/'+Hmmer3Hit::RDF_HMMER_HIT+'/"' +
-        "\n" + '>'
-    end
-
-    def rdf_end(type = :xml)
-      "\n</rdf:RDF>"
-    end
-
   end # class Hmmer3Report
 
   class Hmmer3Hit
@@ -159,35 +131,6 @@ module Bio
     attr_reader :full_sequence_e_value
     attr_reader :full_sequence_score
     attr_reader :full_sequence_bias
-
-    # RDF output
-    RDF_HMMER_PFAM_RESOURCE = 'http://pfam.sanger.ac.uk/family?acc='
-    RDF_HMMER_HIT = 'hmmer_hit'
-    RDF_HMMER_TARGET_NAME = 'target_name'
-    RDF_HMMER_QUERY_NAME = 'query_name'
-    RDF_HMMER_QUERY_ACCESSION = 'query_accession'
-    RDF_HMMER_FULL_SEQUENCE_E_VALUE = 'full_sequence_e_value'
-    RDF_HMMER_FULL_SEQUENCE_SCORE = 'full_sequence_score'
-    RDF_HMMER_FULL_SEQUENCE_BIAS = 'full_sequence_bias'
-    RDF_HMMER_TARGET_DESCRIPTION = 'target_description'
-
-    private
-
-    def to_rdfxml( label_a, label_b, value, indent, attribute = '' )
-      if attribute && attribute.length > 0
-        attribute = ' ' << attribute
-      end
-      label = label_a + ':' + label_b
-      "\n" + indendentation( indent ) + '<' + label + attribute + '>' + value.to_s + '</' + label + '>'
-    end
-
-    def indendentation( indent )
-      indendentation = String.new
-      indent.times do
-        indendentation << "\t"
-      end
-      indendentation
-    end
 
   end # class Hmmer3hit
 
@@ -238,46 +181,6 @@ module Bio
     attr_reader :domain_number_est_rep
     attr_reader :domain_number_est_inc
 
-    # RDF output
-
-    RDF_HMMER_BEST_1_DOMAIN_E_VALUE = 'best_1_domain_e_value'
-    RDF_HMMER_BEST_1_DOMAIN_SCORE = 'best_1_domain_score'
-    RDF_HMMER_BEST_1_DOMAIN_BIAS = 'best_1_domain_bias'
-    RDF_HMMER_DOMAIN_NUMBER_EST_ESP = 'domain_number_est_exp'
-    RDF_HMMER_DOMAIN_NUMBER_EST_REG = 'domain_number_est_reg'
-    RDF_HMMER_DOMAIN_NUMBER_EST_CLU = 'domain_number_est_clu'
-    RDF_HMMER_DOMAIN_NUMBER_EST_OV = 'domain_number_est_ov'
-    RDF_HMMER_DOMAIN_NUMBER_EST_ENV = 'domain_number_est_env'
-    RDF_HMMER_DOMAIN_NUMBER_EST_DOM = 'domain_number_est_dom'
-    RDF_HMMER_DOMAIN_NUMBER_EST_REP = 'domain_number_est_rep'
-    RDF_HMMER_DOMAIN_NUMBER_EST_INC = 'domain_number_est_inc'
-
-    def to_rdf(type = :xml)
-      rdf = String.new
-      rdf << "\n\t" << '<rdf:Description rdf:about="' + RDF_HMMER_PFAM_RESOURCE + target_accession + '">'
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_TARGET_NAME, target_name, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_QUERY_NAME, query_name, 2)
-      if query_accession.length > 1
-        rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_QUERY_ACCESSION, query_accession, 2)
-      end
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_FULL_SEQUENCE_E_VALUE, full_sequence_e_value, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_FULL_SEQUENCE_SCORE, full_sequence_score, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_FULL_SEQUENCE_BIAS, full_sequence_bias, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_BEST_1_DOMAIN_E_VALUE, best_1_domain_e_value, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_BEST_1_DOMAIN_SCORE, best_1_domain_score, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_BEST_1_DOMAIN_BIAS, best_1_domain_bias, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_ESP, domain_number_est_exp, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_REG, domain_number_est_reg, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_CLU, domain_number_est_clu, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_OV, domain_number_est_ov, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_ENV, domain_number_est_env, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_DOM, domain_number_est_dom, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_REP, domain_number_est_rep, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER_EST_INC, domain_number_est_inc, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_TARGET_DESCRIPTION, target_description, 2)
-      rdf << "\n" << "\t" << '</rdf:Description> '
-      rdf
-    end
   end # class HmmerPerSequenceHit
 
   class HmmerPerDomainHit < Hmmer3Hit
@@ -333,54 +236,6 @@ module Bio
     attr_reader :env_coord_from
     attr_reader :env_coord_to
     attr_reader :acc
-
-    # RDF output
-    RDF_HMMER_TARGET_LENGTH = 'target_length'
-    RDF_HMMER_QUERY_LENGTH = 'query_length'
-    RDF_HMMER_DOMAIN_NUMBER = 'domain_number'
-    RDF_HMMER_DOMAIN_SUM = 'domain_sum'
-    RDF_HMMER_DOMAIN_C_E_VALUE = 'domain_c_e_value'
-    RDF_HMMER_DOMAIN_I_E_VALUE = 'domain_i_e_value'
-    RDF_HMMER_DOMAIN_SCORE = 'domain_score'
-    RDF_HMMER_DOMAIN_BIAS = 'domain_bias'
-    RDF_HMMER_HMM_COORD_FROM = 'hmm_coord_from'
-    RDF_HMMER_HMM_COORD_TO = 'hmm_coord_to'
-    RDF_HMMER_ALI_COORD_FROM = 'ali_coord_from'
-    RDF_HMMER_ALI_COORD_TO = 'ali_coord_to'
-    RDF_HMMER_ENV_COORD_FROM = 'env_coord_from'
-    RDF_HMMER_ENV_COORD_TO = 'env_coord_to'
-    RDF_HMMER_ACC = 'acc'
-
-    def to_rdf(type = :xml)
-      rdf = String.new
-      rdf << "\n\t" << '<rdf:Description rdf:about="' + RDF_HMMER_PFAM_RESOURCE + target_accession + '">'
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_TARGET_NAME, target_name, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_TARGET_LENGTH, target_length, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_QUERY_NAME, query_name, 2)
-      if query_accession.length > 1
-        rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_QUERY_ACCESSION, query_accession, 2)
-      end
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_QUERY_LENGTH, query_length, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_FULL_SEQUENCE_E_VALUE, full_sequence_e_value, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_FULL_SEQUENCE_SCORE, full_sequence_score, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_FULL_SEQUENCE_BIAS, full_sequence_bias, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_NUMBER, domain_number, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_SUM, domain_sum, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_C_E_VALUE, domain_c_e_value, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_I_E_VALUE, domain_i_e_value, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_SCORE, domain_score, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_DOMAIN_BIAS, domain_bias, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_HMM_COORD_FROM, hmm_coord_from, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_HMM_COORD_TO, hmm_coord_to, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_ALI_COORD_FROM, ali_coord_from, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_ALI_COORD_TO,ali_coord_to, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_ENV_COORD_FROM, env_coord_from, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_ENV_COORD_TO, env_coord_to, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_ACC, acc, 2)
-      rdf << to_rdfxml(RDF_HMMER_HIT, RDF_HMMER_TARGET_DESCRIPTION, target_description, 2)
-      rdf << "\n" << "\t" << '</rdf:Description> '
-      rdf
-    end
 
   end # class HmmerPerDomainHit
 

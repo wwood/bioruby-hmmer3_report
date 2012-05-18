@@ -48,10 +48,6 @@ Input from string:
       puts hit.full_sequence_e_value
     end
 
-RDF/XML output:
-
-    puts report.to_rdf
-
 ## References
 
 * HMMER  http://hmmer.janelia.org/
