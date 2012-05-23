@@ -1,0 +1,209 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.0 (March 2010); http://hmmer.org/
+# Copyright (C) 2010 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /srv/whitlam/bio/db/pfam/26/Pfam-A.hmm
+# target sequence database:        /srv/whitlam/bio/db/img/3.5/genomes/finished//637000001/637000001.genes.faa
+# model-specific thresholding:     TC cutoffs
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       1-cysPrx_C  [M=40]
+Accession:   PF10417.4
+Description: C-terminal domain of 1-Cys peroxiredoxin
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence Description
+    ------- ------ -----    ------- ------ -----   ---- --  -------- -----------
+
+   [No hits detected that satisfy reporting thresholds]
+
+
+Domain annotation for each sequence (and alignments):
+
+   [No targets detected that satisfy reporting thresholds]
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (40 nodes)
+Target sequences:                       4779  (1680477 residues)
+Passed MSV filter:                       169  (0.035363); expected 95.6 (0.02)
+Passed bias filter:                      142  (0.0297133); expected 95.6 (0.02)
+Passed Vit filter:                        10  (0.00209249); expected 4.8 (0.001)
+Passed Fwd filter:                         1  (0.000209249); expected 0.0 (1e-05)
+Initial search space (Z):               4779  [actual number of targets]
+Domain search space  (domZ):               0  [number of targets reported over threshold]
+# CPU time: 0.09u 0.01s 00:00:00.10 Elapsed: 00:00:00.06
+# Mc/sec: 1120.32
+//
+Query:       120_Rick_ant  [M=255]
+Accession:   PF12574.3
+Description: 120 KDa Rickettsia surface antigen
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence Description
+    ------- ------ -----    ------- ------ -----   ---- --  -------- -----------
+
+   [No hits detected that satisfy reporting thresholds]
+
+
+Domain annotation for each sequence (and alignments):
+
+   [No targets detected that satisfy reporting thresholds]
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (255 nodes)
+Target sequences:                       4779  (1680477 residues)
+Passed MSV filter:                       109  (0.0228081); expected 95.6 (0.02)
+Passed bias filter:                       92  (0.0192509); expected 95.6 (0.02)
+Passed Vit filter:                         6  (0.00125549); expected 4.8 (0.001)
+Passed Fwd filter:                         0  (0); expected 0.0 (1e-05)
+Initial search space (Z):               4779  [actual number of targets]
+Domain search space  (domZ):               0  [number of targets reported over threshold]
+# CPU time: 0.12u 0.02s 00:00:00.13 Elapsed: 00:00:00.05
+# Mc/sec: 8570.43
+//
+Query:       14-3-3  [M=236]
+Accession:   PF00244.15
+Description: 14-3-3 protein
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence Description
+    ------- ------ -----    ------- ------ -----   ---- --  -------- -----------
+
+   [No hits detected that satisfy reporting thresholds]
+
+
+Domain annotation for each sequence (and alignments):
+
+   [No targets detected that satisfy reporting thresholds]
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (236 nodes)
+Target sequences:                       4779  (1680477 residues)
+Passed MSV filter:                       150  (0.0313873); expected 95.6 (0.02)
+Passed bias filter:                       96  (0.0200879); expected 95.6 (0.02)
+Passed Vit filter:                         4  (0.000836995); expected 4.8 (0.001)
+Passed Fwd filter:                         0  (0); expected 0.0 (1e-05)
+Initial search space (Z):               4779  [actual number of targets]
+Domain search space  (domZ):               0  [number of targets reported over threshold]
+# CPU time: 0.12u 0.03s 00:00:00.15 Elapsed: 00:00:00.07
+# Mc/sec: 5665.61
+//
+Query:       2-Hacid_dh  [M=133]
+Accession:   PF00389.25
+Description: D-isomer specific 2-hydroxyacid dehydrogenase, catalytic domain
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence  Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------  -----------
+    6.2e-36  121.1   2.3    1.2e-35  120.2   0.5    2.2  1  637982115 Acid345_0115 D-3-phosphoglycerate dehydrogenase [K
+      3e-19   67.1   0.0    3.8e-19   66.8   0.0    1.3  1  637984252 Acid345_2236 D-isomer specific 2-hydroxyacid dehyd
+    6.2e-07   27.3   0.0      9e-07   26.8   0.0    1.3  1  637983083 Acid345_1074 D-isomer specific 2-hydroxyacid dehyd
+
+
+Domain annotation for each sequence (and alignments):
+>> 637982115  Acid345_0115 D-3-phosphoglycerate dehydrogenase [Korebacter versatilis Ellin345]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  120.2   0.5   7.6e-39   1.2e-35       1     133 []       3     313 ..       3     313 .. 0.98
+
+  Alignments for each domain:
+  == domain 1    score: 120.2 bits;  conditional E-value: 7.6e-39
+                 EEECST.-CCHHHHHCC..TEEEEEEC.GSSHHHHHC....-SEEEE-TTS-BSHHHHCC-TT--EEEES----TTB-HHHHHH---EEE--TTTTHHH CS
+                 xxxxxxxxxxxxxxxxx..xxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx RF
+  2-Hacid_dh   1 vlileplreeelellke..gvevevkd.ellteellekakdadalivrsntkvtaevleklpkLkviatagvGvDniDldaakerGIlVtnvpgystes 96 
+                 +++ e++ +++++l+k+    +v++ d   ++e+lle++k+adalivrs   v+a++le++ +L+vi++agvGvDni l+aa+++GI+V+n+pg+++ +
+   637982115   3 IVVAEKIAKAAIDLFKQdpTWNVVTPDqVAQKEQLLEQLKGADALIVRSAVFVDAAMLEHADQLRVIGRAGVGVDNIELEAATRKGIAVMNTPGANAIA 101
+                 6889999**********8544777777778888****************************************************************** PP
+
+                 HHHHH.............................................................................................. CS
+                 xxxxx.............................................................................................. RF
+  2-Hacid_dh  97 vAEla.............................................................................................. 101
+                 vAE++                                                                                              
+   637982115 102 VAEHTiglmlalarfipratetmhagkwekkslqgtelrgktlgivglgriglevarraasfgmtlvahdpyvspaiahdakirladrdevlavadyit 200
+                 *************************************************************************************************** PP
+
+                 .................................................................................T-CHHHHHHHHHHHHHHH CS
+                 .................................................................................xxxxxxxxxxxxxxxxxx RF
+  2-Hacid_dh 102 .................................................................................fateeaqenmaeeaaenl 119
+                                                                                                  ++t eaq++++ ++a ++
+   637982115 201 lhvgltpqtanminattlatmkkgvrivncargeliddaalaeavksghvggaaldvfteeplkaspyhgvpnviltphigGSTAEAQDAVGVQIAHQV 299
+                 *************************************************************************************************** PP
+
+                 HHHH--G--TCCE- CS
+                 xxxxxxxxxxxxxx RF
+  2-Hacid_dh 120 vaflkgespanavn 133
+                 +++l+ + ++navn
+   637982115 300 RDYLQRGVVQNAVN 313
+                 *************8 PP
+
+>> 637984252  Acid345_2236 D-isomer specific 2-hydroxyacid dehydrogenase, NAD-binding [Korebacter versatilis Ellin345]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   66.8   0.0   2.4e-22   3.8e-19       7     102 ..      14     146 ..       8     353 .. 0.77
+
+  Alignments for each domain:
+  == domain 1    score: 66.8 bits;  conditional E-value: 2.4e-22
+                 .-CCHHHHHCC.TEEEEEEC...GSSHHHHHC.....-SEEEE-TTS-BSHHHHCC-.TT--EEEES----TTB-HHHHHH---EEE--TTTTHHHHHH CS
+                 xxxxxxxxxxx.xxxxxxxx...xxxxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx RF
+  2-Hacid_dh   7 lreeelellke.gvevevkd...ellteellekakd.adalivrsntkvtaevlekl.pkLkviatagvGvDniDldaakerGIlVtnvpgystesvAE 99 
+                 + + +le+l++ g++vev+     ++++ ++ek++  +d+li++ ++k++aev+e+   +Lkv+a+++vG+Dni+ + a+++ +  t++ +++te++AE
+   637984252  14 IGKPALERLRAaGYDVEVYPqadPPPKSLIIEKVASgIDGLITTLRDKIDAEVFEAGkGNLKVVAQIAVGFDNINRADANKYKVPFTHTADVLTEATAE 112
+                 55667788888888*****999766667667776655********************9***************************************** PP
+
+                 HH...............................T CS
+                 xx...............................x RF
+  2-Hacid_dh 100 la...............................f 102
+                 +a                               f
+   637984252 113 FAffimaaaarklwtaernvrdlkwgtwhpflpF 146
+                 **66666555555555555555555555555550 PP
+
+>> 637983083  Acid345_1074 D-isomer specific 2-hydroxyacid dehydrogenase, NAD-binding [Korebacter versatilis Ellin345]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   26.8   0.0   5.7e-10     9e-07      30     132 ..      40     321 ..      18     322 .. 0.89
+
+  Alignments for each domain:
+  == domain 1    score: 26.8 bits;  conditional E-value: 5.7e-10
+                 HHHHC....-SEEEE-TTS-BSHHHHCC-TT--EEEES----TTB-HHHHHH---EEE--TTTTHHHHHHHH........................... CS
+                 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx........................... RF
+  2-Hacid_dh  30 eellekakdadalivrsntkvtaevleklpkLkviatagvGvDniDldaakerGIlVtnvpgystesvAEla........................... 101
+                 ++l ++++dad+ ++r  +      + ++++Lk+i  a++ v  + +  +++ +I+Vtn+ ++    vAE+a                           
+   637983083  40 ATLEQEISDADIALTRELK---PSQVHAAKQLKWIHSAAAAVHALMIPEIRQSNIIVTNATAVHGPVVAEHAlamilaiarridlavkaqtehiwkqee 135
+                 5677888888888888755...7778899********************************************************************** PP
+
+                 ................................................................................................... CS
+                 ................................................................................................... RF
+  2-Hacid_dh 102 ................................................................................................... 101
+                                                                                                                    
+   637983083 136 iwvtnppprdiagstllvvglgqigrplaqkakalgmhviavrehpergaetadevfaskdllkilpradfvmlcppvtpdtkeafgrdqlaamkpday 234
+                 *99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999 PP
+
+                 ........................................................T-CHHHHHHHHHHHHHHHHHHH--G--TCCE CS
+                 ........................................................xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx RF
+  2-Hacid_dh 102 ........................................................fateeaqenmaeeaaenlvaflkgespanav 132
+                                                                         + + +  e+    + enl++fl+g+++   v
+   637983083 235 llnvgrgalidepaliealqqrriggaaldvtsveplpsdsplwaldncmitphtgGISPKLWERQYIFFTENLRRFLAGKPLLGLV 321
+                 999999999999999999999999999999999999999999999999999999998888888888888888888888888776655 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (133 nodes)
+Target sequences:                       4779  (1680477 residues)
+Passed MSV filter:                       187  (0.0391295); expected 95.6 (0.02)
+Passed bias filter:                      167  (0.0349445); expected 95.6 (0.02)
+Passed Vit filter:                        22  (0.00460347); expected 4.8 (0.001)
+Passed Fwd filter:                         3  (0.000627746); expected 0.0 (1e-05)
+Initial search space (Z):               4779  [actual number of targets]
+Domain search space  (domZ):               3  [number of targets reported over threshold]
+# CPU time: 0.13u 0.00s 00:00:00.13 Elapsed: 00:00:00.07
+# Mc/sec: 3192.91
+//
