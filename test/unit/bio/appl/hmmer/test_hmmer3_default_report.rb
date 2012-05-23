@@ -4,17 +4,17 @@ module Bio
   class TestDefaultReport < Test::Unit::TestCase
     HMMER_TEST_DATA = Pathname.new(File.join('test','data','HMMER')).cleanpath.to_s
 
-    # def test_splitting
-      # reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
-      # assert_equal 4, reports.length
-      # assert_kind_of Bio::HMMER::HMMER3::DefaultHMMSearchReport, reports[0]
-    # end
-#     
-    # def test_alignment_when_no_hits
-      # reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
-      # assert_equal [], reports[0].domain_hits
-    # end
-# 
+    def test_splitting
+      reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
+      assert_equal 4, reports.length
+      assert_kind_of Bio::HMMER::HMMER3::DefaultHMMSearchReport, reports[0]
+    end
+    
+    def test_alignment_when_no_hits
+      reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
+      assert_equal [], reports[0].domain_hits
+    end
+
     def test_alignment_when_three_hits
       reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
       hits = reports[3].domain_hits
