@@ -1,21 +1,29 @@
+
+require 'bio/appl/hmmer/hmmer3/tabular_report'
+
+
 module Bio
   class HMMER
     class HMMER3
 
-    def self.reports(multiple_report_text)
-      ary = []
-      multiple_report_text.each_line("\n//\n") do |report|
-        if block_given?
-          yield DefaultHMMSearchReport.new(report)
-        else
-          ary << DefaultHMMSearchReport.new(report)
+    def self.reports(multiple_report_text, options={})
+      if [:domtblout, :tblout].include?(options[:format])
+        return TabularReport.new(multiple_report_text, options[:format])
+      else
+        ary = []
+        multiple_report_text.each_line("\n//\n") do |report|
+          if block_given?
+            yield DefaultHMMSearchReport.new(report)
+          else
+            ary << DefaultHMMSearchReport.new(report)
+          end
         end
+        return ary
       end
-      return ary
     end
 
+    # This class is for parsing HMMSearch outputs from the default output
     class DefaultHMMSearchReport
-
       # Delimiter of each entry for Bio::FlatFile support.
       DELIMITER = RS = "\n//\n"
 
@@ -55,7 +63,8 @@ module Bio
       # TODO: parse statistical information
       # TODO: parse sequence-wise hits
       
-      def domain_hits
+      # Return an array of HMMER3::Hit objects from this report
+      def hits
         return [] unless @report_chunks['alignment'].match(/^>>/)
         # For each hit sequence (hits)
         sequence_annotations = @report_chunks['alignment'].split(">>")
@@ -85,7 +94,7 @@ module Bio
           #                 6889999**********8544777777778888****************************************************************** PP
           stanzas = seq_annot.split("\n\n")
           
-          hit = DomainHitAnnotation.new
+          hit = Hit.new
           hsps = []
           
           # Parse the first
@@ -93,7 +102,7 @@ module Bio
           sequence_name = lines[0].gsub(/^ /,'')
           hit.sequence_name = sequence_name
           lines[3..(lines.length-1)].each do |line|
-            annotation = DomainHitAnnotation::DomainHspAnnotation.new
+            annotation = Hit::Hsp.new
             
             splits = line.split(/\s+/)
             i = 1
@@ -144,7 +153,8 @@ module Bio
         return alignments
       end
       
-      class DomainHitAnnotation
+      # TODO: There is some overlapping code here between the tabular report Hit object and this object, probably should DRY it up a bit.
+      class Hit
         attr_accessor :sequence_name
         
         attr_accessor :hsps
@@ -153,7 +163,7 @@ module Bio
           @hsps = []
         end
         
-        class DomainHspAnnotation
+        class Hsp
           attr_accessor :number, :score, :bias, :c_evalue, :i_evalue, :hmmfrom, :hmm_to, :alifrom, :ali_to, :envfrom, :env_to, :acc
         
           attr_accessor :hmmseq, :flatseq

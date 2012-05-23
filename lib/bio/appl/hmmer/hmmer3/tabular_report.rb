@@ -16,7 +16,7 @@ module Bio
     #
     # Parser class for hmmsearch and hmmscan in the HMMER 3 package. See README of this biogem for more information.
     class HMMER3
-      class Report
+      class TabularReport
         def initialize(hmmer_output, format = nil)
           
           @hits = Array.new

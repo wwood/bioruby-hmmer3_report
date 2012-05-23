@@ -2,8 +2,6 @@ require 'helper'
 
 module Bio
   class TestDefaultReport < Test::Unit::TestCase
-    HMMER_TEST_DATA = Pathname.new(File.join('test','data','HMMER')).cleanpath.to_s
-
     def test_splitting
       reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
       assert_equal 4, reports.length
@@ -12,25 +10,25 @@ module Bio
     
     def test_alignment_when_no_hits
       reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
-      assert_equal [], reports[0].domain_hits
+      assert_equal [], reports[0].hits
     end
 
     def test_alignment_when_three_hits
       reports = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'test637000001.hmmsearch.txt')))
-      hits = reports[3].domain_hits
+      hits = reports[3].hits
       assert_kind_of Array, hits
       
       assert_equal 3, hits.length
       
       
       h = hits[1]
-      assert_kind_of Bio::HMMER::HMMER3::DefaultHMMSearchReport::DomainHitAnnotation, h
+      assert_kind_of Bio::HMMER::HMMER3::DefaultHMMSearchReport::Hit, h
       assert_equal 1, h.hsps.length
       assert_equal '637984252  Acid345_2236 D-isomer specific 2-hydroxyacid dehydrogenase, NAD-binding [Korebacter versatilis Ellin345]',
         h.sequence_name
       
       d = h.hsps[0]
-      assert_kind_of Bio::HMMER::HMMER3::DefaultHMMSearchReport::DomainHitAnnotation::DomainHspAnnotation, d
+      assert_kind_of Bio::HMMER::HMMER3::DefaultHMMSearchReport::Hit::Hsp, d
       assert_equal 1, d.number
       assert_equal 66.8, d.score
       assert_equal 0.0, d.bias
@@ -60,7 +58,7 @@ module Bio
     end
     
     def test_multi_domain_hit_simple
-      hits = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'hmmer3multidomainHitSimple.txt')))[0].domain_hits
+      hits = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'hmmer3multidomainHitSimple.txt')))[0].hits
       assert_equal 1, hits.length
       assert_equal 2, hits[0].hsps.length
       
@@ -69,7 +67,7 @@ module Bio
     end
     
     def test_multi_domain_hit
-      hits = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'hmmer3multidomainHit.txt')))[0].domain_hits
+      hits = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'hmmer3multidomainHit.txt')))[0].hits
       assert_equal 4, hits.length
       assert_equal 1, hits[0].hsps.length
       assert_equal 2, hits[2].hsps.length

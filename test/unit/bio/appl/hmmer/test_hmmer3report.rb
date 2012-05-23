@@ -10,40 +10,12 @@
 require 'helper'
 
 module Bio
-  module Testreport
-
-    HMMER_TEST_DATA = Pathname.new(File.join('test','data','HMMER')).cleanpath.to_s
-
-    def self.hmmsearch_domtblout_empty
-      File.open(File.join HMMER_TEST_DATA, 'hmmsearch_domtblout_empty.out')
-    end
-
-    def self.hmmsearch_domtblout
-      File.open(File.join HMMER_TEST_DATA, 'hmmsearch_domtblout.out')
-    end
-
-    def self.hmmsearch_tblout
-      File.open(File.join HMMER_TEST_DATA, 'hmmsearch_tblout.out')
-    end
-
-    def self.hmmscan_domtblout
-      File.open(File.join HMMER_TEST_DATA, 'hmmscan_domtblout.out')
-    end
-
-    def self.hmmscan_tblout
-      File.open(File.join HMMER_TEST_DATA, 'hmmscan_tblout.out')
-    end
-
-  end # Testreport
-
   class Testreport_class_methods < Test::Unit::TestCase
-
-
     def test_hmmsearch_domtblout_empty
-      filename = Testreport.hmmsearch_domtblout_empty
+      filename = File.open(File.join HMMER_TEST_DATA, 'hmmsearch_domtblout_empty.out')
 
-      assert_instance_of(Bio::HMMER::HMMER3::Report,
-        report = Bio::HMMER::HMMER3::Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::TabularReport,
+        report = Bio::HMMER::HMMER3::TabularReport.new(filename))
 
       assert_instance_of(Array,
         report.hits)
@@ -53,10 +25,10 @@ module Bio
 
 
     def test_hmmsearch_domtblout
-      filename = Testreport.hmmsearch_domtblout
+      filename = File.open(File.join HMMER_TEST_DATA, 'hmmsearch_domtblout.out')
 
-      assert_instance_of(Bio::HMMER::HMMER3::Report,
-        report = Bio::HMMER::HMMER3::Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::TabularReport,
+        report = Bio::HMMER::HMMER3::TabularReport.new(filename))
 
       assert_instance_of(Array,
         report.hits)
@@ -100,10 +72,10 @@ module Bio
 
     def test_hmmsearch_tblout
 
-      filename = Testreport.hmmsearch_tblout
+      filename = File.open(File.join HMMER_TEST_DATA, 'hmmsearch_tblout.out')
 
-      assert_instance_of(Bio::HMMER::HMMER3::Report,
-        report = Bio::HMMER::HMMER3::Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::TabularReport,
+        report = Bio::HMMER::HMMER3::TabularReport.new(filename))
 
       assert_instance_of(Array,
         report.hits)
@@ -139,10 +111,10 @@ module Bio
 
     def test_hmmscan_domtblout
 
-      filename = Testreport.hmmscan_domtblout
+      filename = File.open(File.join HMMER_TEST_DATA, 'hmmscan_domtblout.out')
 
-      assert_instance_of(Bio::HMMER::HMMER3::Report,
-        report = Bio::HMMER::HMMER3::Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::TabularReport,
+        report = Bio::HMMER::HMMER3::TabularReport.new(filename))
 
       assert_instance_of(Array,
         report.hits)
@@ -180,10 +152,10 @@ module Bio
     end # test_hmmscan_domtblout
 
     def test_hmmscan_tblout
-      filename = Testreport.hmmscan_tblout
+      filename = File.open(File.join HMMER_TEST_DATA, 'hmmscan_tblout.out')
 
-      assert_instance_of(Bio::HMMER::HMMER3::Report,
-        report = Bio::HMMER::HMMER3::Report.new(filename))
+      assert_instance_of(Bio::HMMER::HMMER3::TabularReport,
+        report = Bio::HMMER::HMMER3::TabularReport.new(filename))
 
       assert_instance_of(Array,
         report.hits)
@@ -225,7 +197,7 @@ module Bio
       data << "\n" << 'BH4                  PF02180.11    27 sp|P10415|BCL2_HUMAN -            239   3.9e-15   54.6   0.1   1   1   1.3e-18   8.2e-15   53.6   0.1     2    26     8    32     7    33 0.94 Bcl-2 homology region 4'
       data << "\n"
   
-      report = Bio::HMMER::HMMER3::Report.new(data)
+      report = Bio::HMMER::HMMER3::TabularReport.new(data)
       hits = report.hits
       hits.each do |hit|
         assert_kind_of Bio::HMMER::HMMER3::PerDomainHit, hit
