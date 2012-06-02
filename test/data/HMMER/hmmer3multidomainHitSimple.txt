@@ -1,0 +1,58 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.0 (March 2010); http://hmmer.org/
+# Copyright (C) 2010 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /srv/whitlam/bio/db/pfam/26/Pfam-A.hmm
+# target sequence database:        /srv/whitlam/bio/db/img/3.5/genomes/finished//637000001/637000001.genes.faa
+# model-specific thresholding:     TC cutoffs
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       3HCDH  [M=97]
+Accession:   PF00725.17
+Description: 3-hydroxyacyl-CoA dehydrogenase, C-terminal domain
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence  Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------  -----------
+    5.7e-24   82.7   0.1    1.3e-14   52.7   0.0    3.4  2  637984486 Acid345_2469 3-hydroxyacyl-CoA dehydrogenase, NAD-
+
+
+Domain annotation for each sequence (and alignments):
+>> 637984486  Acid345_2469 3-hydroxyacyl-CoA dehydrogenase, NAD-binding [Korebacter versatilis Ellin345]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   52.7   0.0   1.1e-17   1.3e-14       2      96 ..     196     293 ..     196     294 .. 0.97
+   2 !   25.6   0.0   3.2e-09   3.8e-06      24      61 ..     378     415 ..     359     435 .. 0.78
+
+  Alignments for each domain:
+  == domain 1    score: 52.7 bits;  conditional E-value: 1.1e-17
+                --HHHHHHHHHHHHHHHHHTTSS-HHHHHHHHHH.----.---HHHHHH---HHHHHHHHHHHCTCCCH..GG-..HHHHHHHHTT-----------E CS
+      3HCDH   2 FvvnRvlapllneairlveegvatpediDaamkkglGlp.mGpfelsdlvgldvakkilevlaeelger..ayapsplleklveagrlgrktgkgfyk 96 
+                F+ nR+    + ++ir+++e  +++ed+Da++  ++G+p  ++f+++dlvgld+  ++   +++  +++  + + +++ ++++e + lg kt+ gfyk
+  637984486 196 FIGNRIGTFSVLNVIRVMQEMDLSIEDVDALTGSAVGWPkSATFRTIDLVGLDILGHVVGNMKQNVTDErsDLQIPDFYKQMLERKWLGDKTKGGFYK 293
+                9**************************************999******************999999999899999**********************8 PP
+
+  == domain 2    score: 25.6 bits;  conditional E-value: 3.2e-09
+                S-HHHHHHHHHH.-------HHHHHH---HHHHHHHHH CS
+      3HCDH  24 atpediDaamkkglGlpmGpfelsdlvgldvakkilev 61 
+                 t+ +iDaam+ g+++ mGpfel d +g+++    +++
+  637984486 378 DTIVEIDAAMRMGFNWEMGPFELWDAAGVEATVGRMKA 415
+                5789*************************998877763 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (97 nodes)
+Target sequences:                       4779  (1680477 residues)
+Passed MSV filter:                       142  (0.0297133); expected 95.6 (0.02)
+Passed bias filter:                      122  (0.0255284); expected 95.6 (0.02)
+Passed Vit filter:                        12  (0.00251099); expected 4.8 (0.001)
+Passed Fwd filter:                         4  (0.000836995); expected 0.0 (1e-05)
+Initial search space (Z):               4779  [actual number of targets]
+Domain search space  (domZ):               4  [number of targets reported over threshold]
+# CPU time: 0.09u 0.01s 00:00:00.10 Elapsed: 00:00:00.05
+# Mc/sec: 3260.13
+//
+

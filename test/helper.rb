@@ -15,4 +15,5 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'bio-hmmer3_report'
 
 class Test::Unit::TestCase
+  HMMER_TEST_DATA = Pathname.new(File.join('test','data','HMMER')).cleanpath.to_s
 end
