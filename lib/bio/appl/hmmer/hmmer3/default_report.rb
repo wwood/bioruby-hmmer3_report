@@ -59,9 +59,51 @@ module Bio
       end
       private :get_subdata
       
-      # TODO: parse header information
+      # Parse the Query:, Accession: and :Description parts of the 
+      def parse_query
+        @report_chunks['query'].each_line do |line|
+          splits = line.split(':')
+          raise "Unexpected form of query header found in hmmsearch query chunk #{line.inspect}" unless splits.length>1
+          key = splits[0]
+          value = splits[1..(splits.length-1)].join(':').strip #in case there is colons in the value itself
+          
+          if key == 'Query'
+            @query = value
+          elsif key == 'Accession'
+            @query_accession = value
+          elsif key == 'Description'
+            @query_description = value
+          else
+            raise "Unexpected form of query header found in hmmsearch query chunk #{line.inspect}"
+          end
+        end
+      end
+      private :parse_query
+
+      def query
+        return @query unless @query.nil?
+        parse_query
+        return @query
+      end
+      
+      def query_accession
+        return @query_accession unless @query_accession.nil?
+        parse_query
+        return @query_accession
+      end
+      
+      def query_description
+        return @query_description unless @query_description.nil?
+        parse_query
+        return @query_description
+      end
+      
       # TODO: parse statistical information
-      # TODO: parse sequence-wise hits
+      
+      # TODO: parse sequence-wise hits 
+      # (these can be derived from the domain_hits i.e. #hits, mind you, so ..). 
+      # Ah, actually in rare cases when this happens that isn't true: 
+      # "  [No individual domains that satisfy reporting thresholds (although complete target did)]"
       
       # Return an array of HMMER3::Hit objects from this report
       def hits
@@ -101,6 +143,10 @@ module Bio
           lines = stanzas[0].split("\n")
           sequence_name = lines[0].gsub(/^ /,'')
           hit.sequence_name = sequence_name
+          
+          @log.debug "Now parsing table for #{sequence_name}"
+          return [] if lines[1].match(/^   \[No individual domains that/)
+
           lines[3..(lines.length-1)].each do |line|
             annotation = Hit::Hsp.new
             
@@ -148,6 +194,8 @@ module Bio
           
           hit.hsps = hsps
           alignments.push hit
+          
+          @log.debug "Parsed alignments for sequence #{hit.sequence_name}" if @log.debug?
         end
         
         return alignments

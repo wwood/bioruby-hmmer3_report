@@ -75,5 +75,10 @@ module Bio
       assert_equal 'FIGNRIGTFSVLNVIRVMQEMDLSIEDVDALTGSAVGWPkSATFRTIDLVGLDILGHVVGNMKQNVTDErsDLQIPDFYKQMLERKWLGDKTKGGFYK', hits[2].hsps[0].flatseq
       assert_equal 'DTIVEIDAAMRMGFNWEMGPFELWDAAGVEATVGRMKA', hits[2].hsps[1].flatseq
     end
+    
+    def test_whole_sequence_only_not_individual_domains
+      assert_equal [],
+        Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'hmmer3_onlyWholeSequenceNotDomains.txt')))[0].hits
+    end
   end
 end
