@@ -15,7 +15,7 @@ module Bio
       assert_equal :tblout, report.format
     end
     
-    def test_tblout_format_specified
+    def test_domtblout_format_specified
       report = Bio::HMMER::HMMER3.reports(File.open(File.join(HMMER_TEST_DATA, 'hmmsearch_domtblout.out')), :format => :domtblout)
       assert_kind_of Bio::HMMER::HMMER3::TabularReport, report
       assert_equal :domtblout, report.format

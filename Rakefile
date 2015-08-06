@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/wwood/bioruby-hmmer3_report"
   gem.license = "MIT"
   gem.summary = %Q{Enables parsing of HMMER version 3 reports}
-  gem.description = %Q{Enables parsing of HMMER version 3 reports}
+  gem.description = %Q{Enables programmatic parsing of HMMER version 3 reports}
   gem.email = "gmail.com after donttrustben"
   gem.authors = ["Christian Zmasek","Ben J Woodcroft"]
   # dependencies defined in Gemfile
